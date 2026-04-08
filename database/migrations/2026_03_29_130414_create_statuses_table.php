@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('colour')->default('grey'); // For UI badges
+            $table->string('color')->default('grey'); // For UI badges
             $table->integer('order')->default(0);
             $table->timestamps();
         });

@@ -10,9 +10,16 @@ class ActivityController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $limit = $request->input('limit', 20);
+
+        $activities = Activity::with('user')
+            ->orderBy('created_at','desc')
+            ->limit($limit)
+            ->get();
+
+        return response()->json($activities);
     }
 
     /**
