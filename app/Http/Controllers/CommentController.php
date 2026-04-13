@@ -105,4 +105,13 @@ class CommentController extends Controller
         
         return response()->json(['message' => 'Comment deleted']);
     }
+
+    public function all(Request $request)
+    {
+        $comments = Comment::with(['user', 'post'])
+            ->orderBy('created_at', 'desc')
+            ->paginate($request->input('per_page', 50));
+        
+        return CommentResource::collection($comments);
+    }
 }

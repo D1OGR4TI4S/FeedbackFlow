@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function() {
     // Comments
     Route::apiResource('comments', CommentController::class)->except(['create, edit, show']);
     Route::get('comments/{comment}/vote', [CommentController::class, 'vote']);
+    Route::get('posts/{post}/comments', [CommentController::class, 'index']);
 
     // Activities
     Route::get('activities', [ActivityController::class, 'index']);
@@ -53,5 +54,6 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::get('admin/stats', [AdminController::class,'stats']);
         Route::delete('admin/posts/{post}', [AdminController::class,'deletePost']);
         Route::delete('admin/comments/{comment}', [AdminController::class,'deleteComment']);
+        Route::get('comments', [CommentController::class, 'all']); // For admin
     });
 });
